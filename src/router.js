@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
+import Webup from "./views/Webup.vue";
+import Login from "./components/login/Login.vue";
 
 Vue.use(Router);
 
@@ -10,8 +11,13 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "home",
-      component: Home
+      name: "login",
+      component: Login
+    },
+    {
+      path: "/webup",
+      name: "webup",
+      component: Webup
     }
   ]
 });

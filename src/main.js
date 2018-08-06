@@ -8,10 +8,22 @@ import axios from "axios";
 
 Vue.config.productionTip = false;
 
-// axios
+// axios start
 axios.defaults.baseURL = "https://webuptest.smeup.com/WebUPNightly/services";
 // axios.defaults.headers.common['Authorization'] = 'fasfdsa'
 // axios.defaults.headers.get['Accepts'] = 'application/json'
+
+axios.interceptors.request.use(config => {
+  const jwt = localStorage.getItem("JWT");
+
+  if (jwt) {
+    config.headers.authorization = "Bearer " + jwt;
+  }
+
+  return config;
+});
+
+// axios end
 
 new Vue({
   router,

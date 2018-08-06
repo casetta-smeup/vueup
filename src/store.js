@@ -9,7 +9,9 @@ export default new Vuex.Store({
   state: {
     loading: false,
     user: null,
-    token: null
+    webup: {
+      comp: null
+    }
   },
 
   mutations: {
@@ -17,16 +19,29 @@ export default new Vuex.Store({
       state.loading = loading;
     },
 
-    setToken(state, token) {
-      state.token = token;
-    },
-
     setUser(state, user) {
       state.user = user;
+    },
+
+    setWebupComp(state, comp) {
+      state.webup.comp = comp;
     }
   },
 
   actions: {
+    getComp(store, fun) {
+      const urlSearchParams = new URLSearchParams();
+      urlSearchParams.append("fun", fun);
+
+      store.commit("setLoading", true);
+
+      return axios.post("/comp/get", urlSearchParams.toString(), {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      });
+    },
+
     login: function({ commit }, payload) {
       const urlSearchParams = new URLSearchParams();
       urlSearchParams.append("env", payload.env);
@@ -35,21 +50,11 @@ export default new Vuex.Store({
 
       commit("setLoading", true);
 
-      axios
-        .post("/auth/login", urlSearchParams, {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
-        })
-        .then(response => {
-          commit("setLoading", false);
-          commit("setUser", payload.user);
-          commit("setToken", response.data.data.JWT);
-        })
-        .catch(err => {
-          commit("setLoading", false);
-          console.log("error", err);
-        });
+      return axios.post("/auth/login", urlSearchParams.toString(), {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      });
     }
   }
 });
