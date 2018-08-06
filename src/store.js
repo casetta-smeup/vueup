@@ -7,11 +7,16 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    loading: false,
     user: null,
     token: null
   },
 
   mutations: {
+    setLoading(state, loading) {
+      state.loading = loading;
+    },
+
     setToken(state, token) {
       state.token = token;
     },
@@ -28,6 +33,8 @@ export default new Vuex.Store({
       urlSearchParams.append("user", payload.user);
       urlSearchParams.append("pwd", payload.pwd);
 
+      commit("setLoading", true);
+
       axios
         .post("/auth/login", urlSearchParams, {
           headers: {
@@ -35,11 +42,12 @@ export default new Vuex.Store({
           }
         })
         .then(response => {
-          console.log(response)
+          commit("setLoading", false);
           commit("setUser", payload.user);
           commit("setToken", response.data.data.JWT);
         })
         .catch(err => {
+          commit("setLoading", false);
           console.log("error", err);
         });
     }
