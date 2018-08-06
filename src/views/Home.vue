@@ -1,18 +1,26 @@
 <template>
-  <div class="home">
-    <img src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
 export default {
   name: "home",
-  components: {
-    HelloWorld
+
+  data() {
+    return {
+      username: "wu3_01",
+      password: "webup_04",
+      env: "demo"
+    };
+  },
+
+  mounted() {
+    this.$store.dispatch("login", {
+      env: this.env,
+      user: this.username,
+      pwd: this.password
+    });
   }
 };
 </script>
