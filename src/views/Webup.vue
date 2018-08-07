@@ -1,6 +1,13 @@
 <template>
-  <div id="webup">
-    <h3>HOME!</h3>
+  <div
+    id="webup"
+    v-if="hasMainComponent">
+
+    <component
+      :is="currentMainComponent"
+      :component="getMainComponent()">
+
+    </component>
   </div>
 </template>
 
@@ -26,6 +33,29 @@ export default {
         this.$store.commit("setLoading", false);
         console.log("Error", err);
       });
+  },
+
+  methods: {
+    getMainComponent() {
+      return this.$store.state.webup.comp;
+    }
+  },
+
+  computed: {
+    currentMainComponent() {
+      const mainComp = this.getMainComponent();
+
+      if (mainComp) {
+        return mainComp.type;
+      }
+
+      return "UNK";
+    },
+
+    hasMainComponent() {
+      const mainComp = this.getMainComponent();
+      return mainComp && mainComp != null;
+    }
   }
 };
 </script>
