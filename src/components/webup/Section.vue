@@ -1,6 +1,17 @@
 <template>
   <div class="SEC">
-    Section
+    
+  <div
+    v-for="child in component.comps"
+    :key="child.id">
+
+    <component
+      :is="child.type"
+      :component="child"
+      >
+
+    </component>
+  </div>
   </div>
 </template>
 
@@ -8,7 +19,7 @@
 export default {
   name: "sec",
 
-  props: ["sec"]
+  props: ["component"]
 };
 </script>
 
