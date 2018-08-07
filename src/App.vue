@@ -1,11 +1,13 @@
 <template>
   <div id="app">
-    <v-progress-linear
-      v-if="isLoading"
-      :color="color"
-      :indeterminate="true"></v-progress-linear>
+    <v-app>
+      <v-progress-linear
+        v-if="isLoading"
+        :color="color"
+        :indeterminate="true"></v-progress-linear>
 
-    <router-view />
+      <router-view />
+    </v-app>
   </div>
 </template>
 
