@@ -5,10 +5,12 @@
 </template>
 
 <script>
+import BasicComponent from "@/components/webup/BasicComponent.vue";
+
 export default {
   name: "UNK",
 
-  props: ["component"]
+  extends: BasicComponent
 };
 </script>
 

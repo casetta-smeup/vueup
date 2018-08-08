@@ -18,8 +18,10 @@
 </template>
 
 <script>
+import BasicComponent from "@/components/webup/BasicComponent.vue";
+
 export default {
-  props: ["component"],
+  extends: BasicComponent,
 
   methods: {
     getImageSource(img) {

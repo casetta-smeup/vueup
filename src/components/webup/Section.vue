@@ -16,10 +16,12 @@
 </template>
 
 <script>
+import BasicComponent from "@/components/webup/BasicComponent.vue";
+
 export default {
   name: "sec",
 
-  props: ["component"]
+  extends: BasicComponent
 };
 </script>
 

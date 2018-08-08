@@ -18,7 +18,8 @@ export default {
   data() {
     return {
       // sFunction: "F(EXD;*SCO;) 2(MB;SCP_SCH;X1CRU) SS(CONAP())"
-      sFunction: "F(EXB;B£SER_46;WRK.SCP) 1(MB;SCP_SET;WETEST_EXB) 2(;;MAT_013)"
+      // sFunction: "F(EXB;B£SER_46;WRK.SCP) 1(MB;SCP_SET;WETEST_EXB) 2(;;MAT_013)"
+      sFunction: "F(EXD;*SCO;) 1(;;) 2(MB;SCP_SCH;WETEST_EXB) 4(;;SELFIR)"
     };
   },
 

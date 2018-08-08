@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div class="login">Loggin in... please wait</div>
 </template>
 
 <script>
@@ -39,4 +39,7 @@ export default {
 </script>
 
 <style>
+.login {
+  text-align: center;
+}
 </style>

@@ -1,86 +1,71 @@
 <template>
-  <div
-    class="MAT"
-    v-if="component.loaded">
-
-    <v-data-table
-      :headers="tableHeaders"
-      :items="tableItems"
-      :disable-initial-sort="true"
-      hide-actions>
-
-      <template
-        v-if="tableHeaders"
-        slot="headers"
-        slot-scope="props">
-
+  <div class=".MAT">
+    <table v-if="component.table">
+      <thead>
         <tr>
           <th
-            v-for="header in props.headers"
-            :key="header.text">
+            v-for="(column, index) in component.table.cols"
+            :key="index">
 
-            {{ header.text }}
+            {{ column.t }}
           </th>
         </tr>
-      </template>
+      </thead>
 
-      <template
-        slot="items"
-        slot-scope="row">
 
-        <tr>
+      <tbody>
+        <tr
+          v-for="row in rows"
+          :key="row['ID']"
+          :class="{ highlight: row.mouseOver }"
+          @click="onRowClick(row)">
+
           <td
-            v-for="header in Object.keys(row.item)"
-            :key="header">
+            v-for="(column, index) in component.table.cols"
+            :key="index">
 
-            {{ row.item[header] }}
+            {{ row[column.c] }}
           </td>
         </tr>
-      </template>
-
-    </v-data-table>
+      </tbody>
+    </table>
   </div>
 </template>
 
 <script>
+import BasicComponent from "@/components/webup/BasicComponent.vue";
+
 export default {
-  props: ["component"],
+  extends: BasicComponent,
 
   computed: {
-    tableHeaders() {
-      const headers = this.component.table.cols.map((col, index) => {
-        return {
-          text: col.t + "_" + index,
-          value: col.c
-        };
-      });
-
-      return headers;
-    },
-
-    tableItems() {
-      const items = this.component.table.rows.map(row => {
+    rows() {
+      return this.component.table.rows.map(row => {
         const entry = row.content.entry;
 
-        const r = {};
+        var obj = {};
 
-        entry
-          .filter(e => {
-            return this.component.table.cols.some(col => {
-              return e.key === col.c;
-            });
-          })
-          .forEach(e => {
-            r[e.key] = e.value.c;
-          });
+        entry.forEach(e => {
+          obj[e.key] = e.value.c;
+        });
 
-        return r;
+        return obj;
       });
+    }
+  },
 
-      console.log("items", items);
+  methods: {
+    onRowClick(row) {
+      console.log("click on row", row);
 
-      return items;
+      this.sendDynamism("rowClick!");
     }
   }
 };
 </script>
+
+<style lang="scss" scoped>
+table {
+  width: 100%;
+}
+</style>
