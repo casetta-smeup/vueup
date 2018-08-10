@@ -8,6 +8,7 @@ export default {
         // managed components
         switch (compType) {
           case "BTN":
+          case "CHA":
           case "EXD":
           case "IML":
           case "INP":

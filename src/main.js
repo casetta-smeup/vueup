@@ -27,6 +27,7 @@ axios.interceptors.request.use(config => {
 
 // register global components start
 import Button from "./components/webup/Button.vue";
+import Chart from "./components/webup/cha/Cha.vue";
 import Label from "./components/webup/Label.vue";
 import ExdLay from "./components/webup/ExdLay.vue";
 import ImageList from "./components/webup/ImageList.vue";
@@ -38,6 +39,7 @@ import Spotlight from "./components/webup/Spotlight.vue";
 import Unknown from "./components/webup/Unknown.vue";
 
 Vue.component(Button.name, Button);
+Vue.component(Chart.name, Chart);
 Vue.component(Scheda.name, Scheda);
 Vue.component(ImageList.name, ImageList);
 Vue.component(InputPanel.name, InputPanel);
