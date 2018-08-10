@@ -6,7 +6,7 @@
       >
 
       <component
-        :is="child.type"
+        :is="getComponentType(child.type)"
         :component="child"
         >
 
@@ -19,6 +19,8 @@
 import BasicComponent from "@/components/webup/BasicComponent.vue";
 
 export default {
+  name: "LAY",
+
   extends: BasicComponent
 };
 </script>

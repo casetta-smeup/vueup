@@ -1,14 +1,16 @@
 <template>
   <div id="app">
-    <div class="loadin">
-      <v-progress-linear
-        v-if="isLoading"
-        :color="color"
-        :indeterminate="true">
-      </v-progress-linear>
-    </div>
+    <v-app>
+      <div class="loadin">
+        <v-progress-linear
+          v-if="isLoading"
+          :color="color"
+          :indeterminate="true">
+        </v-progress-linear>
+      </div>
 
-    <router-view />
+      <router-view />
+    </v-app>
   </div>
 </template>
 
@@ -28,5 +30,11 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+#app {
+  .loading {
+    width: 500px;
+    margin: auto;
+  }
+}
 </style>

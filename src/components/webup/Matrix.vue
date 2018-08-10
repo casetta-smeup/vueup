@@ -34,8 +34,11 @@
 
 <script>
 import BasicComponent from "@/components/webup/BasicComponent.vue";
+import Dynamism from "../../utils/dynamism";
 
 export default {
+  name: "MAT",
+
   extends: BasicComponent,
 
   computed: {
@@ -56,7 +59,12 @@ export default {
 
   methods: {
     onRowClick(row) {
-      console.log("click on row", row);
+      console.log("click on row: ", row);
+
+      const dyn = new Dynamism();
+      dyn.source = this;
+      dyn.targets = [];
+      dyn.event = "click";
 
       this.sendDynamism("rowClick!");
     }

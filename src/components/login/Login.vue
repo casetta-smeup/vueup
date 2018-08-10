@@ -22,7 +22,6 @@ export default {
         pwd: this.password
       })
       .then(response => {
-        console.log("response", response);
         this.$store.commit("setLoading", false);
         this.$store.commit("setUser", this.username);
 
@@ -32,7 +31,7 @@ export default {
       })
       .catch(err => {
         this.$store.commit("setLoading", false);
-        console.log("error", err);
+        console.log(err);
       });
   }
 };

@@ -6,7 +6,7 @@
     :key="child.id">
 
     <component
-      :is="child.type"
+      :is="getComponentType(child.type)"
       :component="child"
       >
 
@@ -19,7 +19,7 @@
 import BasicComponent from "@/components/webup/BasicComponent.vue";
 
 export default {
-  name: "sec",
+  name: "SEC",
 
   extends: BasicComponent
 };

@@ -6,6 +6,8 @@
 import BasicComponent from "@/components/webup/BasicComponent.vue";
 
 export default {
+  name: "BTN",
+
   extends: BasicComponent
 };
 </script>

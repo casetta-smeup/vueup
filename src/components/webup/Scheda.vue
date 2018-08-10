@@ -8,7 +8,7 @@
       :key="comp.id">
 
       <component
-        :is="comp.type"
+        :is="getComponentType(comp.type)"
         :key="comp.id"
         :component="comp"
         >
@@ -22,6 +22,8 @@
 import BasicComponent from "@/components/webup/BasicComponent.vue";
 
 export default {
+  name: "EXD",
+
   extends: BasicComponent,
 
   methods: {

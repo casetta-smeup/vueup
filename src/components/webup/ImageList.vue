@@ -21,6 +21,8 @@
 import BasicComponent from "@/components/webup/BasicComponent.vue";
 
 export default {
+  name: "IML",
+
   extends: BasicComponent,
 
   methods: {
