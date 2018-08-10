@@ -17,10 +17,15 @@
 
 <script>
 import BasicComponent from "@/components/webup/BasicComponent.vue";
+import Section from "@/components/webup/exd/Section.vue";
 
 export default {
   name: "LAY",
 
-  extends: BasicComponent
+  extends: BasicComponent,
+
+  components: {
+    SEC: Section
+  }
 };
 </script>

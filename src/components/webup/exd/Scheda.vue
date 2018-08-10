@@ -20,11 +20,16 @@
 
 <script>
 import BasicComponent from "@/components/webup/BasicComponent.vue";
+import ExdLay from "@/components/webup/exd/ExdLay.vue";
 
 export default {
   name: "EXD",
 
   extends: BasicComponent,
+
+  components: {
+    LAY: ExdLay
+  },
 
   methods: {
     getComponentStyle() {

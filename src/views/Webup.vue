@@ -1,33 +1,49 @@
 <template>
-  <div
-    id="webup"
-    v-if="hasMainComponent">
+  <div id="webup">
+    <!-- header -->
+    <webup-header></webup-header>
 
-    <form v-on:submit.prevent="onSubmit">
-      <el-input
-        class="fun-input"
-        placeholder="FUN"
-        v-model="sFunction"
-      ></el-input>
-    </form>
+    <div class="loading">
+      <loading
+        :color="color"
+        :style="{display: loading ? 'block' : 'none'}"
+      ></loading>
+    </div>
 
-    <component
-      :is="currentMainComponent"
-      :component="getMainComponent()">
+    <div class="webup-content">
+      <form v-on:submit.prevent="onSubmit">
+        <el-input
+          class="fun-input"
+          placeholder="FUN"
+          v-model="sFunction"
+        ></el-input>
+      </form>
 
-    </component>
+      <component
+        v-if="hasMainComponent"
+        :is="currentMainComponent"
+        :component="getMainComponent()">
+      </component>
+    </div>
   </div>
 </template>
 
 <script>
+import Loading from "@/components/shared/Loading.vue";
+import WebupHeader from "@/components/shared/WebupHeader.vue";
+
 export default {
   name: "webup",
 
+  components: {
+    Loading,
+    WebupHeader
+  },
+
   data() {
     return {
-      sFunction: "F(EXD;*SCO;) 2(MB;SCP_SCH;X1CRU) SS(CONAP())"
-      // sFunction: "F(EXB;B£SER_46;WRK.SCP) 1(MB;SCP_SET;WETEST_EXB) 2(;;MAT_013)"
-      // sFunction: "F(EXD;*SCO;) 1(;;) 2(MB;SCP_SCH;WETEST_EXB) 4(;;SELFIR)"
+      sFunction: "F(EXD;*SCO;) 2(MB;SCP_SCH;X1CRU) SS(CONAP())",
+      color: "blue-grey"
     };
   },
 
@@ -75,17 +91,32 @@ export default {
     hasMainComponent() {
       const mainComp = this.getMainComponent();
       return mainComp && mainComp != null;
+    },
+
+    loading() {
+      return this.$store.state.loading;
     }
   }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #webup {
   margin: 1rem;
 
   .fun-input {
     margin: 1rem 0;
+  }
+
+  .webup-content {
+    margin-top: 50px;
+  }
+
+  .loading {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
   }
 }
 </style>

@@ -2,7 +2,31 @@
 export default {
   props: ["component"],
 
+  created() {
+    if (this.component) {
+      // saving component in store
+      this.$store.commit("addComponentToMap", {
+        id: this.component.id,
+        comp: this
+      });
+    }
+  },
+
+  destroyed() {
+    if (this.component) {
+      // remove component from store
+      this.$store.commit("removeComponentFromMap", this.component.id);
+    }
+  },
+
   methods: {
+    loadComponent() {
+      const _component = this.$store.getters.getComponentById(
+        this.component.id
+      );
+      console.log("loading component", _component);
+    },
+
     getComponentType(compType) {
       if (compType) {
         // managed components

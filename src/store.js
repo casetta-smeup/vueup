@@ -11,10 +11,19 @@ export default new Vuex.Store({
     user: null,
     webup: {
       comp: null
-    }
+    },
+    componentMap: {}
   },
 
   mutations: {
+    addComponentToMap(state, payload) {
+      state.componentMap[payload.id] = payload.comp;
+    },
+
+    removeComponentFromMap(state, id) {
+      delete state.componentMap[id];
+    },
+
     setLoading(state, loading) {
       state.loading = loading;
     },
@@ -55,6 +64,12 @@ export default new Vuex.Store({
           "Content-Type": "application/x-www-form-urlencoded"
         }
       });
+    }
+  },
+
+  getters: {
+    getComponentById: state => id => {
+      return state.componentMap[id];
     }
   }
 });
