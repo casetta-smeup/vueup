@@ -32,7 +32,7 @@ import Label from "./components/webup/Label.vue";
 import ExdLay from "./components/webup/ExdLay.vue";
 import ImageList from "./components/webup/ImageList.vue";
 import InputPanel from "./components/webup/inp/Inp.vue";
-import Matrix from "./components/webup/Matrix.vue";
+import Matrix from "./components/webup/mat/Mat.vue";
 import Scheda from "./components/webup/Scheda.vue";
 import Section from "./components/webup/Section.vue";
 import Spotlight from "./components/webup/Spotlight.vue";
