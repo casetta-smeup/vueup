@@ -78,7 +78,7 @@ export default {
 
       return `https://webuptest.smeup.com/WebUPNightly/javax.faces.resource/${
         split[0]
-      }%253B${split[1]}%253B${split[1]}.jsf?ln=smeupImages`;
+      }%253B${split[1]}%253B${split[2]}.jsf?ln=smeupImages`;
     }
   }
 };
