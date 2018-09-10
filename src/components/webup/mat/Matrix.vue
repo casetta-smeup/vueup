@@ -57,8 +57,6 @@ export default {
 
   methods: {
     onRowClick(row) {
-      console.log("click on row: ", row);
-
       const dyn = new Dynamism();
       dyn.source = this;
       dyn.targets = [];
