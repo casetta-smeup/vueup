@@ -24,6 +24,10 @@ export default new Vuex.Store({
       delete state.componentMap[id];
     },
 
+    replaceComp(state, newData) {
+      state.webup.comp.comps[1].comps[0].comps = [newData.comp];
+    },
+
     setLoading(state, loading) {
       state.loading = loading;
     },
@@ -51,7 +55,7 @@ export default new Vuex.Store({
       });
     },
 
-    login: function({ commit }, payload) {
+    login: function ({ commit }, payload) {
       const urlSearchParams = new URLSearchParams();
       urlSearchParams.append("env", payload.env);
       urlSearchParams.append("user", payload.user);
@@ -64,12 +68,22 @@ export default new Vuex.Store({
           "Content-Type": "application/x-www-form-urlencoded"
         }
       });
-    }
+    },
+
+    execDyn: function ({ commit, dispatch }, payload) {
+      const newFun = `F(EXB;B£SER_46;WRK.SCP) 1(MB;SCP_SET;WETEST_EXB) 2(;;${payload})`;
+
+      // loading component
+      dispatch("getComp", newFun).then(resp => {
+        commit("setLoading", false);
+        commit("replaceComp", resp.data);
+      });
+    },
   },
 
   getters: {
-    getComponentById: state => id => {
+    getComponentById: (state: any) => (id: string) => {
       return state.componentMap[id];
-    }
+    },
   }
 });

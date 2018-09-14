@@ -43,6 +43,7 @@ export default {
   data() {
     return {
       sFunction: "F(EXD;*SCO;) 2(MB;SCP_SCH;X1CRU) SS(CONAP())",
+      // sFunction: "F(EXD;*SCO;) 1(;;) 2(MB;SCP_SCH;WETEST_EXB) 4(;;SELFIR)",
       color: "blue-grey"
     };
   },

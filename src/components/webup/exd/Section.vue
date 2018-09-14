@@ -1,15 +1,15 @@
 <template>
   <div class="SEC">
-
     <!-- flat section -->
     <div
       v-if="flatSection"
-      class="flat-section">
-
+      class="flat-section"
+    >
       <component
+        v-if="component.comps[0].loaded"
         :is="getComponentType(component.comps[0].type)"
         :component="component.comps[0]"
-      ></component>
+      />
     </div>
 
     <v-tabs
@@ -33,9 +33,10 @@
         :key="index"
       >
         <component
+          v-if="child.loaded"
           :is="getComponentType(child.type)"
           :component="child"
-        ></component>
+        />
       </v-tab-item>
     </v-tabs>
   </div>
@@ -71,7 +72,15 @@ export default {
 
       if (!component.loaded) {
         // load component!
-        console.log("loading component", component);
+        this.loadComponent(component)
+          .then(resp => {
+            console.log("resp", resp);
+            this.$store.commit("setLoading", false);
+          })
+          .catch(err => {
+            console.error(err);
+            this.$store.commit("setLoading", false);
+          });
       }
     }
   }

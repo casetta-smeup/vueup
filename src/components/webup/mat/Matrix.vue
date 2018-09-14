@@ -3,7 +3,8 @@
     <el-table
       v-if="component.table"
       :data="tableData"
-      style="width: 100%">
+      style="width: 100%"
+      @row-click="onRowClick">
     
       <el-table-column
         v-for="(column, index) in component.table.cols"
@@ -24,7 +25,6 @@
               {{ row[column.c] }}
             </div>
         </template>
-      
       </el-table-column>
     </el-table>
   </div>
@@ -32,7 +32,6 @@
 
 <script>
 import BasicComponent from "@/components/webup/BasicComponent.vue";
-import Dynamism from "../../../utils/dynamism";
 
 export default {
   name: "MAT",
@@ -46,9 +45,7 @@ export default {
 
         var obj = {};
 
-        entry.forEach(e => {
-          obj[e.key] = e.value.c;
-        });
+        entry.forEach(e => (obj[e.key] = e.value.c));
 
         return obj;
       });
@@ -57,12 +54,7 @@ export default {
 
   methods: {
     onRowClick(row) {
-      const dyn = new Dynamism();
-      dyn.source = this;
-      dyn.targets = [];
-      dyn.event = "click";
-
-      this.sendDynamism("rowClick!");
+      this.$store.dispatch("execDyn", row["H0"]);
     },
 
     isImage(column) {
